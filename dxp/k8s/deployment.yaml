@@ -25,7 +25,7 @@ spec:
         effect: NoSchedule
       containers:
       - name: bahaj-web2
-        image: harbor.dxp/dxp/bahaj-web2:latest
+        image: harbor.harbor.svc.cluster.local/dxp/bahaj-web2:207b8c1
         imagePullPolicy: Always
         envFrom:
         # S105 -- token renomme (etait PLACEHOLDER_DB_SECRET, majuscules
@@ -41,7 +41,9 @@ spec:
         # backend n'est lie. Lue au demarrage par docker/40-dxp-config.sh.
         env:
         - name: VITE_API_URL
-          value: ""
+          value: ''
+        - name: DXP_DEPENDENCIES
+          value: '[]'
         ports:
         - containerPort: 80
         resources:
